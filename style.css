@@ -9,17 +9,17 @@ body {
   font-family: sans-serif;
   height: 100%;
   margin: 0;
-  scrollbar-width: thin;
   overflow-x: hidden;
-  width: 100%;
   position: relative;
+  scrollbar-width: thin;
+  width: 100%;
   z-index: -2;
 }
 
 .flex {
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .flex.column {
@@ -38,8 +38,6 @@ body {
   position: relative;
 }
 .bg::before {
-  position: fixed;
-  content: '';
   background: radial-gradient(
     hsl(190, 0%, 100%) 0%, 
     hsl(190, 0%, 100%) 10%, 
@@ -62,14 +60,16 @@ body {
     hsl(235, 90%, 10%) 90%, 
     hsl(235, 90%, 10%) 100%, 
     hsl(240, 100%, 0%) 100%);
+  aspect-ratio: 1;
   background-position: top;
   background-size: cover;
-  width: max(100vw, 100vh);
-  aspect-ratio: 1;
+  content: '';
   filter: brightness(0.5) saturate(80%);
-  top: 50%;
   left: 50%;
+  position: fixed;
+  top: 50%;
   translate: -50% -50%;
+  width: max(100vw, 100vh);
   z-index: -1;
 }
 
@@ -82,22 +82,94 @@ body {
 .map {
   object-fit: cover;
   height: 100vh;
-  over
 }
 
 .hide {
   visibility: hidden;
 }
 
+map > div {
+  background-color: #99dd;
+  border-radius: 1em;
+  color: #fff;
+  display: block;
+  font-weight: bold;
+  left: 30%;
+  opacity: 0;
+  padding: 0.5em 1em;
+  top: 60%;
+  transition: opacity 200ms;
+  width: fit-content;
+}
+
+map > area#nueva-vizcaya:hover ~ div.nueva-vizcaya {
+  opacity: 1;
+}
+
+map > area#quirino:hover ~ div.quirino {
+  opacity: 1;
+}
+
+map > area#isabela:hover ~ div.isabela {
+  opacity: 1;
+}
+
+map > area[id^="cagayan"]:hover ~ div.cagayan {
+  opacity: 1;
+}
+
+map > area[id^="batanes"]:hover ~ div.batanes {
+  opacity: 1;
+}
+
+map {
+  height: 100%;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+map > div {
+  position: absolute;
+}
+
+map > div.nueva-vizcaya {
+  top: 90%;
+  left: 45%;
+}
+
+map > div.quirino {
+  top: 83%;
+  left: 53%;
+}
+
+map > div.isabela {
+  top: 65%;
+  left: 43%;
+}
+
+map > div.cagayan {
+  top: 35%;
+  left: 38%;
+}
+
+map > div.batanes {
+  top: 8%;
+  left: 45%;
+}
+
 /* province pages */
 
 .back {
-  display: inline-block;
-  text-decoration: none;
-  color: #0af;
   background-color: #fff5;
-  padding: 0.5em 1em;
+  color: #0af;
+  display: inline-block;
+  font-weight: bold;
   margin: 1em;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  transition: background-color 200ms;
 }
 
 .back:hover,
@@ -110,15 +182,15 @@ body {
 }
 
 .image {
-  width: 100%;
   height: 40%;
   object-fit: cover;
+  width: 100%;
 }
 
 .desc {
+  margin: 100px 2em;
   text-align: justify;
   text-indent: 5em;
-  margin: 100px 2em;
 }
 
 .tourist-spots {
@@ -128,15 +200,11 @@ body {
 
 .section-title,
 .tourist-spots > div {
-  border: 0.5em solid #55f3;
   background-color: #fff2;
-  margin: 1em;
   border-radius: 1em;
+  border: 0.5em solid #55f3;
+  margin: 1em;
   text-align: center;
-}
-
-.tourist-spots .image {
-/*  border: 0.5em solid #55f2;*/
 }
 
 .tourist-spots small {
@@ -152,12 +220,13 @@ body {
   height: 300px;
 }
 
-@media only screen and (max-width: 600px) {
+/*@media only screen and (max-width: 600px) {*/
+@media only screen and (orientation: portrait) {
   .title {
     font-size: 90%;
+    left: 0;
     position: absolute;
     top: 20%;
-    left: 0;
   }
   
   .title.hide {
@@ -166,5 +235,35 @@ body {
 
   .tourist-spots {
     flex-direction: column;
+  }
+
+  map > div {
+    pointer-events: none;
+    opacity: 1;
+  }
+
+  map > div.nueva-vizcaya {
+    top: 90%;
+    left: 45%;
+  }
+
+  map > div.quirino {
+    top: 83%;
+    left: 63%;
+  }
+
+  map > div.isabela {
+    top: 68%;
+    left: 30%;
+  }
+
+  map > div.cagayan {
+    top: 40%;
+    left: 43%;
+  }
+
+  map > div.batanes {
+    top: 8%;
+    left: 35%;
   }
 }
