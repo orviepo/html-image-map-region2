@@ -60,4 +60,4 @@ window.onload = () => {
   }
 }
 
-window.onresize = window.onload
+//window.onresize = window.onload
